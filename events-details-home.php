@@ -8,7 +8,7 @@ include 'HomeHeader.php';
         border-radius: 5px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         transition: box-shadow 0.3s ease;
-        font-family: 'New Roman', serif; /* Set font to New Roman */
+        font-family: 'New Roman', serif;
     }
 
     .card:hover {
@@ -17,7 +17,7 @@ include 'HomeHeader.php';
 
     .card-title {
         font-weight: bold;
-        font-size: 18px; /* Fixed the syntax error */
+        font-size: 18px;
     }
     .card-text{
         font-family: 'Times New Roman', Times, serif;
@@ -26,13 +26,13 @@ include 'HomeHeader.php';
     }
 
     .card-body {
-        padding: 20px; /* Add padding to the card body */
+        padding: 20px;
         position: relative;
     }
 
     .related-events .card-img-top {
         width: 100%;
-        height: 200px; /* Set height for the image */
+        height: 200px; 
         object-fit: cover;
     }
 
@@ -57,13 +57,10 @@ if(isset($_GET['id'])) {
                 <div class="col-md-8">
                     <div class="card">
                         <?php
-                        // Check if image path exists
                         if(!empty($event['image'])) {
-                            // Concatenate base URL with image path
                             $image_url = "uploads/" . $event['image'];
                         } else {
-                            // If image path is empty, display a placeholder image or a message
-                            $image_url = "path_to_placeholder_image.jpg"; // Replace with path to your placeholder image
+                            $image_url = "path_to_placeholder_image.jpg";
                         }
                         ?>
                         <img src="<?php echo $image_url; ?>" class="card-img-top" alt="<?php echo $event['name']; ?>">
@@ -77,18 +74,15 @@ if(isset($_GET['id'])) {
                     <h2>Related Events</h2>
                     <div id="related-events-container">
                         <?php
-                        $sql_related = "SELECT * FROM events WHERE id != $event_id LIMIT 4"; // Load only 4 related events initially
+                        $sql_related = "SELECT * FROM events WHERE id != $event_id LIMIT 4";
                         $result_related = $conn->query($sql_related);
 
                         if ($result_related->num_rows > 0) {
                             while($row_related = $result_related->fetch_assoc()) {
-                                // Check if image path exists for related events
                                 if(!empty($row_related['image'])) {
-                                    // Concatenate base URL with image path
                                     $related_image_url = "uploads/" . $row_related['image'];
                                 } else {
-                                    // If image path is empty, display a placeholder image or a message
-                                    $related_image_url = "path_to_placeholder_image.jpg"; // Replace with path to your placeholder image
+                                    $related_image_url = "path_to_placeholder_image.jpg"; 
                                 }
                                 ?>
                                 <div class="card mb-3">

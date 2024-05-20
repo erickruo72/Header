@@ -1,9 +1,7 @@
 <?php
-//session_start();
 require'config.php';
 include 'headerr.php';
 
-//Check if the user is an admin
 if (!isset($_SESSION['usertype']) || $_SESSION['usertype'] !== 'admin') {
     header("Location: view-event.php");
     exit();
@@ -41,7 +39,6 @@ if (!isset($_SESSION['usertype']) || $_SESSION['usertype'] !== 'admin') {
 
 <div class="container">
     <?php
-    // Database connection
     $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
     if (!$conn) {

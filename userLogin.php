@@ -2,25 +2,21 @@
 require('config.php');
 require 'HomeHeader.php';
 
-// Establish database connection
-$conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$conn = mysqli_connect("localhost","root","","events_db");
 if (!$conn) {
     die("Connection error: " . mysqli_connect_error());
 }
 
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    // Prepare a SQL statement using a parameterized query
     $sql = "SELECT * FROM `crud` WHERE username=? AND password=?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "ss", $username, $password);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
-    // Check if the user exists and redirect based on user type
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
         session_start();
@@ -45,9 +41,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login System</title>
-    <!-- Bootstrap CSS -->
+    
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style>
+    .btn-block{
+        background-color: #1C1D3C;
+    }
+  
+</style>
 <body>
 <div class="container">
     <div class="row justify-content-center mt-5">
@@ -65,16 +67,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <form action="#" method="POST">
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                            <input type="text" class="form-control" placeholder="LEC/00/01" id="username" name="username" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input type="password" class="form-control" placeholder="123" id="password" name="password" required>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </form>
                     <div class="text-center mt-3">
-                        <p>Forgot your password? <a href="forgot-password.php">Reset it here</a></p>
+                    <div><a href="forgot.php">Forgot password?</a></div>
+
+                        <p>Forgot your password? <a href="forgot.php">Reset it here</a></p>
                     </div>
                 </div>
             </div>
@@ -82,7 +86,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </div>
 
-<!-- Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

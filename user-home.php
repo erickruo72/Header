@@ -44,13 +44,10 @@ include 'user-nav.php';
             echo '<div class="col-lg-4 col-md-6 mt-5">';
             echo '<div class="card h-100">';
             
-            // Check if image path exists
             if(!empty($row['image'])) {
-                // Concatenate base URL with image path
                 $image_url = "uploads/" . $row['image'];
             } else {
-                // If image path is empty, display a placeholder image or a message
-                $image_url = "path_to_placeholder_image.jpg"; // Replace with path to your placeholder image
+                $image_url = "path_to_placeholder_image.jpg"; 
             }
             
             echo '<img src="' . $image_url . '" class="card-img-top" style="object-fit: cover; height: 150px;" alt="' . $row['name'] . '">';

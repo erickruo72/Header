@@ -24,12 +24,13 @@ if (!isset($_SESSION['username'])) {
             color: #333;
             font-weight: normal;
             font-style: normal;
-            padding-right: 20px; /* Add padding to the right to give space to the end */
+            padding-right: 20px;
         }
         .custom-navbar .navbar-nav .nav-link {
-            color: whitesmoke !important; /* Ensure the link color matches the specified text color */
-            text-transform: uppercase; /* Make the text uppercase */
-            margin-right: 15px; /* Add space between menu items */
+            color: whitesmoke !important; 
+            text-transform: uppercase; 
+            margin-right: 15px; 
+
         }
         .custom-navbar .navbar-brand {
            margin-left: 70px;

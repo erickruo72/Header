@@ -1,30 +1,25 @@
 <?php
-//session_start();
 require 'config.php';
 include 'headerr.php';
 
-//Check if the user is an admin
 if (!isset($_SESSION['usertype']) || $_SESSION['usertype'] !== 'admin') {
     header("Location: view-event.php");
     exit();
 }
 
-// Define a variable to store the error message
 $error = '';
 
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if all required fields are filled
+
     if (empty($_POST['name']) || empty($_POST['description']) || empty($_POST['date']) || empty($_POST['location']) || empty($_FILES['image']['name'])) {
         $error = "Please fill all the required fields.";
     } else {
-        // Process the uploaded image
+
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        // Check if image file is a actual image or fake image
         $check = getimagesize($_FILES["image"]["tmp_name"]);
         if ($check !== false) {
             $uploadOk = 1;
@@ -33,19 +28,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $uploadOk = 0;
         }
 
-        // Check if file already exists
         if (file_exists($target_file)) {
             $error = "Sorry, file already exists.";
             $uploadOk = 0;
         }
 
-        // Check file size
         if ($_FILES["image"]["size"] > 500000) {
             $error = "Sorry, your file is too large.";
             $uploadOk = 0;
         }
 
-        // Allow certain file formats
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
             && $imageFileType != "gif"
         ) {
@@ -53,17 +45,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $uploadOk = 0;
         }
 
-        // If everything is ok, try to upload file
         if ($uploadOk == 1) {
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                // File uploaded successfully, now insert event details into database
+
                 $name = $_POST['name'];
                 $description = $_POST['description'];
                 $date = $_POST['date'];
                 $location = $_POST['location'];
                 $image = basename($_FILES["image"]["name"]);
 
-                // Insert into database
                 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
                 $sql = "INSERT INTO events (name, description, date, location, image) VALUES ('$name', '$description', '$date', '$location', '$image')";
                 if (mysqli_query($conn, $sql)) {
@@ -84,13 +74,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <style>
     .form-group label {
         font-weight: 600;
-        margin-bottom: 8px; /* Add margin below the label */
+        margin-bottom: 8px; 
     }
 
     .form-group input,
     .form-group textarea,
     .form-group select {
-        margin-bottom: 16px; /* Add margin below the input */
+        margin-bottom: 16px; 
     }
   
     .submit-btn-container {

@@ -31,12 +31,10 @@ if (isset($_POST["submit"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
         rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
         crossorigin="anonymous">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -48,7 +46,6 @@ if (isset($_POST["submit"])) {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             transition: 0.3s;
             border-radius: 5px;
-            /* Optional: rounded corners */
         }
 
         .card:hover {
@@ -108,8 +105,9 @@ if (isset($_POST["submit"])) {
                             <label for="female" class="form-input-label">Female</label>
                         </div>
 
-                        <div class="text-center" style="padding: 30px;"> <!-- Centering save and cancel buttons -->
-                            <button type="submit" class="btn btn-success me-3" name="submit">Save</button>
+                        <div class="text-center" style="padding: 30px;">
+
+                        <button type="submit" class="btn btn-success me-3" name="submit">Save</button>
                             <a href="index.php" class="btn btn-danger">Cancel</a>
                         </div>
                     </form>
@@ -118,7 +116,6 @@ if (isset($_POST["submit"])) {
         </div>
     </div>
 
-    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>

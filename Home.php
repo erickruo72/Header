@@ -9,18 +9,14 @@ include 'HomeHeader.php';
     }
     .card {
         height: 500px;
-         /* Set the height of the card */
         border-radius: 5px; 
-        /* Add rounded corners */
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-        /* Add shadow */
         transition: box-shadow 0.3s ease; 
-        /* Add transition effect */
         margin-bottom: 30px;
     }
 
     .card:hover {
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Change shadow on hover */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
         
     }
     .btn-primary{
@@ -44,13 +40,10 @@ include 'HomeHeader.php';
             echo '<div class="col-lg-4 col-md-6 mt-5">';
             echo '<div class="card h-100">';
             
-            // Check if image path exists
             if(!empty($row['image'])) {
-                // Concatenate base URL with image path
                 $image_url = "uploads/" . $row['image'];
             } else {
-                // If image path is empty, display a placeholder image or a message
-                $image_url = "path_to_placeholder_image.jpg"; // Replace with path to your placeholder image
+                $image_url = "path_to_placeholder_image.jpg";
             }
             
             echo '<img src="' . $image_url . '" class="card-img-top" style="object-fit: cover; height: 150px;" alt="' . $row['name'] . '">';

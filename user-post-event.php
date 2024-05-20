@@ -12,6 +12,8 @@ if (!isset($_SESSION['usertype']) || $_SESSION['usertype'] !== 'user') {
 // Define a variable to store the error message
 $error = '';
 
+#echo '---'.uniqid();
+
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if all required fields are filled
@@ -20,7 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Process the uploaded image
         $target_dir = "uploads/";
-        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+
+        $newfilename =time().'_'.basename($_FILES["image"]["name"]);
+        $target_file = $target_dir . $newfilename;
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -61,9 +65,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $description = $_POST['description'];
                 $date = $_POST['date'];
                 $location = $_POST['location'];
-                $image = basename($_FILES["image"]["name"]);
+                $image = $newfilename;
 
-                // Insert into database
+                
+
                 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
                 $sql = "INSERT INTO events (name, description, date, location, image) VALUES ('$name', '$description', '$date', '$location', '$image')";
                 if (mysqli_query($conn, $sql)) {
@@ -84,13 +89,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <style>
     .form-group label {
         font-weight: 600;
-        margin-bottom: 8px; /* Add margin below the label */
+        margin-bottom: 8px; 
     }
 
     .form-group input,
     .form-group textarea,
     .form-group select {
-        margin-bottom: 16px; /* Add margin below the input */
+        margin-bottom: 16px; 
     }
   
     .submit-btn-container {

@@ -2,18 +2,15 @@
 require('config.php');
 include 'headerr.php';
 
-// Check if event ID is provided
 if(isset($_GET['id'])) {
     $event_id = $_GET['id'];
 
-    // Fetch event details from the database
     $sql = "SELECT * FROM events WHERE id = '$event_id'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        // Display form with current event details
 ?>
         <div class="container mt-4 mb-4">
             <div class="card">
@@ -21,12 +18,12 @@ if(isset($_GET['id'])) {
                     <style>
                         .label-bold {
                             font-weight: bold;
-                            color: #333; /* You can adjust the color as needed */
+                            color: #333; 
                         }
 
                         .input-normal {
                             font-weight: normal;
-                            color: #777; /* You can adjust the color as needed */
+                            color: #777; 
                         }
                         .file-input input[type=file] {
                             display: none;
@@ -58,9 +55,7 @@ if(isset($_GET['id'])) {
                             <label for="date" class="label-bold">Event Date:</label>
                             <input type="date" class="form-control input-normal" id="date" name="date" value="<?php echo $row['date']; ?>">
                         </div>
-                        <!-- Hidden field to store existing image path -->
                         <input type="hidden" name="existing_image" value="<?php echo $row['image']; ?>">
-                        <!-- Add more fields as needed -->
                         <button type="submit" class="btn btn-primary mt-4">Update Event</button>
                     </form>
                 </div>
