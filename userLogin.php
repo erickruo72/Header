@@ -12,11 +12,6 @@ if (!$conn) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
-    // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-
-    // Hash the password (if stored as plain text in the database)
-    // $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Prepare a SQL statement using a parameterized query
     $sql = "SELECT * FROM `crud` WHERE username=? AND password=?";
@@ -79,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </form>
                     <div class="text-center mt-3">
-                        <!-- <p>Don't have an account? <a href="registration.php">Register here</a></p> -->
+                        <p>Forgot your password? <a href="forgot-password.php">Reset it here</a></p>
                     </div>
                 </div>
             </div>
