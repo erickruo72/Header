@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         if ($stmt->execute()) {
-            header("Location: view-event.php");
+            header("Location: pending.php");
             exit();
         } else {
             echo "Error updating event: " . $stmt->error;

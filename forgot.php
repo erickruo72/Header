@@ -14,14 +14,11 @@ require "mail.php";
 		$mode = $_GET['mode'];
 	}
 
-	//something is posted
 	if(count($_POST) > 0){
 
 		switch ($mode) {
 			case 'enter_email':
-				// code...
 				$email = $_POST['email'];
-				//validate email
 				if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
 					$error[] = "Please enter a valid email";
 				}elseif(!valid_email($email)){
@@ -36,7 +33,6 @@ require "mail.php";
 				break;
 
 			case 'enter_code':
-				// code...
 				$code = $_POST['code'];
 				$result = is_code_correct($code);
 
@@ -51,7 +47,6 @@ require "mail.php";
 				break;
 
 			case 'enter_password':
-				// code...
 				$password = $_POST['password'];
 				$password2 = $_POST['password2'];
 
@@ -73,7 +68,6 @@ require "mail.php";
 				break;
 			
 			default:
-				// code...
 				break;
 		}
 	}
@@ -85,12 +79,19 @@ require "mail.php";
 		$expire = time() + (60 * 1);
 		$code = rand(10000,99999);
 		$email = addslashes($email);
+		$subject = "Password reset ";
+		$message = "You have requested to reset your password of Zetech Events System account.<br><br>
+		 Please find the security code to change your password:<br><br>" . $code . "<br><br>";
+		$message .= "<b>Please don't share with anyone</b>.<br><br>";
+		$message .= "If you did not request this, please ignore this message.";
+
+		
 
 		$query = "insert into codes (email,code,expire) value ('$email','$code','$expire')";
 		mysqli_query($con,$query);
 
-		//send email here
-		send_mail($email,'Password reset',"Your code is " . $code);
+		send_mail($email, $subject,$message);
+		
 	}
 	
 	function save_password($password){
@@ -185,7 +186,6 @@ require "mail.php";
 
 			switch ($mode) {
 				case 'enter_email':
-					// code...
 					?>
 						<form method="post" action="forgot.php?mode=enter_email"> 
 							<h1>Forgot Password</h1>
@@ -193,7 +193,6 @@ require "mail.php";
 							<span style="font-size: 12px;color:red;">
 							<?php 
 								foreach ($error as $err) {
-									// code...
 									echo $err . "<br>";
 								}
 							?>
@@ -208,7 +207,6 @@ require "mail.php";
 					break;
 
 				case 'enter_code':
-					// code...
 					?>
 						<form method="post" action="forgot.php?mode=enter_code"> 
 							<h1>Forgot Password</h1>
@@ -216,7 +214,6 @@ require "mail.php";
 							<span style="font-size: 12px;color:red;">
 							<?php 
 								foreach ($error as $err) {
-									// code...
 									echo $err . "<br>";
 								}
 							?>
@@ -229,13 +226,12 @@ require "mail.php";
 								<input type="button" value="Start Over">
 							</a>
 							<br><br>
-							<div><a href="login.php">Login</a></div>
+							<div><a href="UserLogin.php">Login</a></div>
 						</form>
 					<?php
 					break;
 
 				case 'enter_password':
-					// code...
 					?>
 						<form method="post" action="forgot.php?mode=enter_password"> 
 							<h1>Forgot Password</h1>
@@ -243,7 +239,6 @@ require "mail.php";
 							<span style="font-size: 12px;color:red;">
 							<?php 
 								foreach ($error as $err) {
-									// code...
 									echo $err . "<br>";
 								}
 							?>
@@ -257,13 +252,12 @@ require "mail.php";
 								<input type="button" value="Start Over">
 							</a>
 							<br><br>
-							<div><a href="login.php">Login</a></div>
+							<div><a href="UserLogin.php">Login</a></div>
 						</form>
 					<?php
 					break;
 				
 				default:
-					// code...
 					break;
 			}
 

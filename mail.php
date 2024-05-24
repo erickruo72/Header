@@ -18,12 +18,13 @@ function send_mail($recipient,$subject,$message)
   $mail->Host       = "smtp.gmail.com";
   //$mail->Host       = "smtp.mail.yahoo.com";
   $mail->Username   = "erickruo72@gmail.com";
-  $mail->Password   = "pesm xgmg llsm wbjn";
-  //$mail->Password   = "@Amastudent1350";
+ // $mail->Password   = "pesm xgmg llsm wbjn";
+   $mail->Password   = "nkah xntv nfzt ubrk
+   ";
 
   $mail->IsHTML(true);
   $mail->AddAddress($recipient, "esteemed customer");
-  $mail->SetFrom("erickruo72@gmail.com", "My website");
+  $mail->SetFrom("erickruo72@gmail.com", "Zetech University");
   //$mail->AddReplyTo("reply-to-email", "reply-to-name");
   //$mail->AddCC("cc-recipient-email", "cc-recipient-name");
   $mail->Subject = $subject;

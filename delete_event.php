@@ -6,7 +6,7 @@ if(isset($_GET['id'])) {
 
     $sql = "DELETE FROM events WHERE id='$event_id'";
     if ($conn->query($sql) === TRUE) {
-        header("Location:view-event.php");
+        header("Location:approved.php");
         exit();
     } else {
         echo "Error deleting event: " . $conn->error;

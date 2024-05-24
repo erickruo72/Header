@@ -1,46 +1,9 @@
 <?php
-//require('config.php');
-include 'user-nav.php';
+require('config.php');
+include 'headerr.php';
 ?>
 
 <style>
-    .card {
-        border-radius: 5px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: box-shadow 0.3s ease;
-        font-family: 'New Roman', serif; 
-    }
-
-    .card:hover {
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .card-title {
-        font-weight: bold;
-        font-size: 18px; 
-    }
-    .card-text{
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 16px;
-        font-weight: 500;
-    }
-
-    .card-body {
-        padding: 20px; 
-        position: relative;
-    }
-
-    .related-events .card-img-top {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-
-    .read-more-btn {
-        bottom: 10px;
-        transform: translateX(100%);
-        background-color: #1C1D3C;
-    }
 </style>
 
 <?php
@@ -67,6 +30,13 @@ if(isset($_GET['id'])) {
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $event['name']; ?></h5>
                             <p class="card-text"><?php echo nl2br($event['description']); ?></p>
+                            <a href="edit_event.php?id=<?php echo $event['id']; ?>" class="btn btn-primary">Edit</a>
+                            <a href="delete_event.php?id=<?php echo $event['id']; ?>" class="btn btn-danger">Delete</a>
+                            <?php if ($event['approved'] == 0): ?>
+                                <a href="approve_event.php?id=<?php echo $event['id']; ?>" class="btn btn-success">Approve</a>
+                            <?php else: ?>
+                                <a href="disaprove-event.php?id=<?php echo $event['id']; ?>" class="btn btn-warning">Disapprove</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -90,7 +60,8 @@ if(isset($_GET['id'])) {
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $row_related['name']; ?></h5>
                                         <p class="card-text"><?php echo substr($row_related['description'], 0, 100); ?></p>
-                                        <a href="event_details.php?id=<?php echo $row_related['id']; ?>" class="btn btn-primary read-more-btn">Read More</a>
+
+                                        <a href="admin-readmore.php?id=<?php echo $row_related['id']; ?>" class="btn btn-primary read-more-btn">Read More</a>
                                     </div>
                                 </div>
                                 <?php

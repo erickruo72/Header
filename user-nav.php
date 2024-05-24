@@ -1,8 +1,7 @@
-
 <?php
 session_start();
+include 'config.php';
 
-// Redirect to login page if user is not logged in
 if (!isset($_SESSION['username'])) {
     header("location: userLogin.php");
     exit();
@@ -47,18 +46,20 @@ if (!isset($_SESSION['username'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
                 <li class="nav-item">
+                        <a class="nav-link">Welcome back, <?php echo htmlspecialchars($_SESSION['first_name']); ?></a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="user-home.php">View Events</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="user-post-event.php">Post New Event</a>
                     </li>
-                   
-                    
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
                     </li>
+                    
                 </ul>
             </div>
         </div>

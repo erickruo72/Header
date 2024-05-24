@@ -24,7 +24,7 @@ include "headerr.php";
 
 <style>
        .mb-3,table-dark  th{
-        margin-top: 50px;
+        margin-top: 5;
         background-color: #1C1D3C;
        }
      
@@ -44,7 +44,7 @@ include "headerr.php";
           </div>';
         }
         ?>
-        <a href="add-new.php" class="btn btn-dark mb-3">Add New</a>
+        <a href="add-new.php" class="btn btn-dark mb-3 mt-3">Add New</a>
 
         <table class="table table-hover text-center">
             <thead class="table-dark">

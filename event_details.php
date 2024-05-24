@@ -1,6 +1,6 @@
 <?php
-require('config.php');
-include 'headerr.php';
+//require('config.php');
+include 'user-nav.php';
 ?>
 
 <style>

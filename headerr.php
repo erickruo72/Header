@@ -2,7 +2,6 @@
 <?php
 session_start();
 
-// Redirect to login page if user is not logged in
 if (!isset($_SESSION['username'])) {
     header("location: userLogin.php");
     exit();
@@ -13,6 +12,7 @@ if (!isset($_SESSION['username'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="uploads/events/Zetech Events logo.png" type="image/x-icon">
     <title>Zetech University</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -49,15 +49,23 @@ if (!isset($_SESSION['username'])) {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                        <a class="nav-link" href="view-event.php">View Events</a>
+                        <a class="nav-link" href="admin-home.php">Dashboard</a>
+                    </li>
+                    
+          
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.php">Events</a>
                     </li>
 
+                  
                     <li class="nav-item">
                         <a class="nav-link" href="admin-add-event.php">Post New Event</a>
                     </li>
                    
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">View Users</a>
+                        <a class="nav-link" href="index.php"> Users</a>
                     </li>              
                    
                     <li class="nav-item">

@@ -3,7 +3,7 @@ require 'config.php';
 include 'headerr.php';
 
 if (!isset($_SESSION['usertype']) || $_SESSION['usertype'] !== 'admin') {
-    header("Location: view-event.php");
+    header("Location: admin-home.php");
     exit();
 }
 
@@ -11,7 +11,10 @@ $error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (empty($_POST['name']) || empty($_POST['description']) || empty($_POST['date']) || empty($_POST['location']) || empty($_FILES['image']['name'])) {
+    if (empty($_POST['name']) || empty($_POST['description']) || empty($_POST['date']) ||
+     empty($_POST['location'])
+     || empty($_FILES['image']['name'])
+     ) {
         $error = "Please fill all the required fields.";
     } else {
 
@@ -57,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
                 $sql = "INSERT INTO events (name, description, date, location, image) VALUES ('$name', '$description', '$date', '$location', '$image')";
                 if (mysqli_query($conn, $sql)) {
-                    header("Location: view-event.php");
+                    header("Location: events.php");
                     exit();
                 } else {
                     $error = "Error: " . $sql . "<br>" . mysqli_error($conn);
@@ -100,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         color: white;
     }
 </style>
-</style>
+<script src="https://cdn.ckeditor.com/ckeditor5/10.0.1/classic/ckeditor.js"></script>
 
 <div class="container" style="margin:40px;">
     <div class="row justify-content-center">
@@ -116,9 +119,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label for="name" style="font-weight: 600;padding-bottom: 8px;" >Event Name:</label>
                             <input type="text" class="form-control" id="name" name="name">
                         </div>
+
+
                         <div class="form-group" >
-                            <label for="description" style="font-weight: 600;">Description:</label>
-                            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+
+                        <textarea name="description" id="editor">
+                            <p>This is some sample content.</p>
+                        </textarea>
+                        <script>
+                            ClassicEditor
+                                .create( document.querySelector( '#editor' ) )
+                                .catch( error => {
+                                    console.error( error );
+                                } );
+                        </script>
+                        
+
+                            <!-- <label for="description" style="font-weight: 600;">Description:</label>
+                            <textarea class="form-control" id="description" name="description" rows="3"></textarea> -->
                         </div>
                         <div class="form-group">
                             <label for="date" style="font-weight: 600;">Date:</label>
@@ -140,6 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
+
 </div>
 
 
