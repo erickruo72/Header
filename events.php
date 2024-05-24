@@ -87,8 +87,9 @@ $result = $stmt->get_result();
                     <button type="submit" class="btn btn-primary">Search</button>
                 </div>
                 <div class="col-md-1">
-                    <button type="button" class="btn btn-secondary" onclick="resetFilters()">Reset</button>
-                </div>
+    <button type="button" class="btn btn-secondary" onclick="resetFilters()">Reset</button>
+</div>
+
             </div>
         </form>
 
@@ -145,9 +146,27 @@ $result = $stmt->get_result();
                 checkbox.checked = true;
             });
         }
-        function resetFilters() {
-            location.reload();
-        }
+      
+
+
+</script>
+
+<script>
+function resetFilters() {
+    // Clear input field values
+    document.getElementsByName('keyword')[0].value = '';
+    document.getElementsByName('date')[0].value = '';
+    document.getElementsByName('status')[0].selectedIndex = 0;
+
+    // Change form action to events.php
+    document.getElementById('eventsForm').action = 'events.php';
+
+    // Submit the form
+    document.getElementById('eventsForm').submit();
+}
+</script>
+
+
     </script>
 </body>
 </html>
